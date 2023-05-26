@@ -61,4 +61,10 @@ dependencies {
 
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    // FIXME https://github.com/android/android-test/issues/1755#issuecomment-1511876990
+    debugImplementation(AndroidX.Tracing)
+
+    androidTestImplementation(Testing.junit4)
+    androidTestImplementation(AndroidX.test.runner)
+    androidTestImplementation(AndroidX.Compose.ui.testJunit4)
 }
