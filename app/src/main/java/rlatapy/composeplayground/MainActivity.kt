@@ -7,12 +7,15 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -91,6 +94,7 @@ fun BottomSheetSample(
     ModalBottomSheet(
         onDismissRequest = closeBottomSheet,
         sheetState = bottomSheetState,
+        windowInsets = WindowInsets(0),
     ) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             Button(
@@ -107,16 +111,18 @@ fun BottomSheetSample(
                 Text("Hide Bottom Sheet")
             }
         }
-        LazyColumn {
-            item {
-                TextField(
-                    value = textValue,
-                    onValueChange = { textValue = it },
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxWidth(),
-                )
-            }
-        }
+        TextField(
+            value = textValue,
+            onValueChange = { textValue = it },
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+        )
+        Spacer(
+            Modifier
+                .background(Color.Cyan)
+                .fillMaxWidth()
+                .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Bottom))
+        )
     }
 }
