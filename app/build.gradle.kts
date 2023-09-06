@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "rlatapy.composeplayground"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "rlatapy.composeplayground"
         minSdk = 30
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -38,7 +38,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "_"
+        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
     }
     packaging {
         resources {
@@ -48,17 +48,17 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:_")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:_")
-    implementation("androidx.activity:activity-compose:_")
+    implementation(libs.core.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.activity.compose)
 
-    api(platform("dev.chrisbanes.compose:compose-bom:_"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+    api(platform(AndroidX.Compose.bom))
+    implementation(libs.ui)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3)
 
-    implementation("com.google.accompanist:accompanist-systemuicontroller:_")
+    implementation(libs.accompanist.systemuicontroller)
 
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
 }
