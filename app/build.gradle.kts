@@ -52,7 +52,7 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
 
-    api(platform(libs.compose.bom))
+    api(platform(libs.compose.beta.bom))
     implementation(libs.ui)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)

@@ -15,26 +15,21 @@ org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version = 
 [versions]
 
 kotlin = "1.9.10"
+##  ⬆ = "1.9.20-Beta"
 
-androidx-compose = "2023.08.00"
+androidx-compose = "2023.09.00"
 
-androidx-core = "1.12.0-rc01"
+compose-bom-alpha = "2023.10.00-alpha01"
 
-androidx-lifecycle = "2.6.1"
+androidx-core = "1.12.0"
+
+androidx-lifecycle = "2.6.2"
 ##              ⬆ = "2.7.0-alpha01"
+##              ⬆ = "2.7.0-alpha02"
 
-androidx-activity = "1.7.2"
-##             ⬆ = "1.8.0-alpha01"
-##             ⬆ = "1.8.0-alpha02"
-##             ⬆ = "1.8.0-alpha03"
-##             ⬆ = "1.8.0-alpha04"
-##             ⬆ = "1.8.0-alpha05"
-##             ⬆ = "1.8.0-alpha06"
-##             ⬆ = "1.8.0-alpha07"
+androidx-activity = "1.8.0-beta01"
 
-google-accompanist = "0.32.0"
-##              ⬆ = "0.33.0-alpha"
-##              ⬆ = "0.33.1-alpha"
+google-accompanist = "0.33.1-alpha"
 
 androidx-compose-compiler = "1.5.3"
 
@@ -63,5 +58,6 @@ accompanist-systemuicontroller = { group = "com.google.accompanist", name = "acc
 com-android-tools-build-gradle = "com.android.tools.build:gradle:8.1.1"
 
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose" }
+compose-beta-bom = { module = "dev.chrisbanes.compose:compose-bom", version.ref = "compose-bom-alpha" }
 
 androidx-compose-compiler-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "androidx-compose-compiler" }
