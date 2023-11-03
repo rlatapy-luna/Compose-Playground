@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.material3)
 
     implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.androidx.navigation.compose)
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
