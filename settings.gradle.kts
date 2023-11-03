@@ -12,6 +12,7 @@ plugins {
 ////                            # available:"0.60.0"
 ////                            # available:"0.60.1"
 ////                            # available:"0.60.2"
+////                            # available:"0.60.3"
 }
 
 dependencyResolutionManagement {
