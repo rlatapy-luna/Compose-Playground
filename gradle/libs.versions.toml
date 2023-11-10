@@ -10,38 +10,9 @@
 
 [versions]
 
-kotlin = "1.9.10"
-##  ⬆ = "1.9.20-Beta"
-##  ⬆ = "1.9.20-Beta2"
-##  ⬆ = "1.9.20-RC"
-##  ⬆ = "1.9.20-RC2"
-##  ⬆ = "1.9.20"
+kotlin = "1.9.20"
 
-android-gradle-plugin = "8.1.2"
-##                 ⬆ = "8.2.0-alpha01"
-##                 ⬆ = "8.2.0-alpha02"
-##                 ⬆ = "8.2.0-alpha03"
-##                 ⬆ = "8.2.0-alpha04"
-##                 ⬆ = "8.2.0-alpha05"
-##                 ⬆ = "8.2.0-alpha06"
-##                 ⬆ = "8.2.0-alpha07"
-##                 ⬆ = "8.2.0-alpha08"
-##                 ⬆ = "8.2.0-alpha09"
-##                 ⬆ = "8.2.0-alpha10"
-##                 ⬆ = "8.2.0-alpha11"
-##                 ⬆ = "8.2.0-alpha12"
-##                 ⬆ = "8.2.0-alpha13"
-##                 ⬆ = "8.2.0-alpha14"
-##                 ⬆ = "8.2.0-alpha15"
-##                 ⬆ = "8.2.0-alpha16"
-##                 ⬆ = "8.2.0-beta01"
-##                 ⬆ = "8.2.0-beta02"
-##                 ⬆ = "8.2.0-beta03"
-##                 ⬆ = "8.2.0-beta04"
-##                 ⬆ = "8.2.0-beta05"
-##                 ⬆ = "8.2.0-beta06"
-##                 ⬆ = "8.2.0-rc01"
-##                 ⬆ = "8.2.0-rc02"
+android-gradle-plugin = "8.2.0-rc03"
 ##                 ⬆ = "8.3.0-alpha01"
 ##                 ⬆ = "8.3.0-alpha02"
 ##                 ⬆ = "8.3.0-alpha03"
@@ -54,6 +25,7 @@ android-gradle-plugin = "8.1.2"
 ##                 ⬆ = "8.3.0-alpha10"
 ##                 ⬆ = "8.3.0-alpha11"
 ##                 ⬆ = "8.3.0-alpha12"
+##                 ⬆ = "8.3.0-alpha13"
 
 androidx-compose = "2023.10.01"
 
@@ -72,12 +44,15 @@ androidx-activity = "1.8.0"
 
 google-accompanist = "0.33.2-alpha"
 
-androidx-compose-compiler = "1.5.3"
-navigation-compose = "2.7.5" # 2.7.4 does not crash
+androidx-compose-compiler = "1.5.4"
+
+navigation-compose = "2.7.5"
 
 [libraries]
 
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "android-gradle-plugin" }
 
 ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 
@@ -96,8 +71,6 @@ ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 material3 = { module = "androidx.compose.material3:material3" }
 
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "google-accompanist" }
-
-android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "android-gradle-plugin" }
 
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose" }
 
