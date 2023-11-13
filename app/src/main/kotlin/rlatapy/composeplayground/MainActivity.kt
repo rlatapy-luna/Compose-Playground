@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -40,6 +41,10 @@ import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.yield
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.jvm.isAccessible
 
@@ -61,6 +66,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
+        val appScope = CoroutineScope(Dispatchers.Main)
 
         setContent {
 
@@ -75,8 +81,11 @@ class MainActivity : ComponentActivity() {
                 composable(MainScreen1) {
                     val navController = rememberNavController()
                     LaunchedEffect(navController) {
-                        Log.d(LOG_TAG, "Current nestedNavController at ${nestedNavController?.currentDestination}")
-                        Log.d(LOG_TAG, "New nestedNavController at ${navController.currentDestination}")
+                        Log.d(
+                            LOG_TAG,
+                            "Current nestedNavController ${nestedNavController.hashCode()} at ${nestedNavController?.currentDestination?.route}"
+                        )
+                        Log.d(LOG_TAG, "New nestedNavController ${navController.hashCode()} at ${navController.currentDestination?.route}")
                         nestedNavController = navController
                     }
                     Column {
@@ -141,9 +150,14 @@ class MainActivity : ComponentActivity() {
                             }
                             Button(onClick = {
                                 mainNavController.popBackStack()
-                                nestedNavController!!.navigate(NestedScreen2)
+                                appScope.launch {
+                                    while (mainNavController.currentBackStackEntry?.lifecycle?.currentState?.isAtLeast(Lifecycle.State.RESUMED) != true) {
+                                        yield()
+                                    }
+                                    nestedNavController!!.navigate(NestedScreen2)
+                                }
                             }) {
-                                Text("$MainScreen1 + $NestedScreen2")
+                                Text("popBackStack + wait resumed + nav to $NestedScreen2")
                             }
                             PrintNavButton(mainNavController, nestedNavController)
                         }
