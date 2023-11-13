@@ -75,6 +75,8 @@ class MainActivity : ComponentActivity() {
                 composable(MainScreen1) {
                     val navController = rememberNavController()
                     LaunchedEffect(navController) {
+                        Log.d(LOG_TAG, "Current nestedNavController at ${nestedNavController?.currentDestination}")
+                        Log.d(LOG_TAG, "New nestedNavController at ${navController.currentDestination}")
                         nestedNavController = navController
                     }
                     Column {
@@ -116,12 +118,7 @@ class MainActivity : ComponentActivity() {
                                 .background(Color.Red),
                             Arrangement.spacedBy(8.dp)
                         ) {
-                            NavButton(mainNavController, MainScreen2) {
-                                popUpTo(MainScreen1) {
-                                    inclusive = true
-                                    saveState = true
-                                }
-                            }
+                            NavButton(mainNavController, MainScreen2)
                             NavButton(navController, NestedScreen1)
                             NavButton(navController, NestedScreen2)
                             PrintNavButton(mainNavController, navController)
@@ -142,8 +139,13 @@ class MainActivity : ComponentActivity() {
                                     inclusive = true
                                 }
                             }
+                            Button(onClick = {
+                                mainNavController.popBackStack()
+                                nestedNavController!!.navigate(NestedScreen2)
+                            }) {
+                                Text("$MainScreen1 + $NestedScreen2")
+                            }
                             PrintNavButton(mainNavController, nestedNavController)
-
                         }
                     }
                 }
