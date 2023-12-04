@@ -23,10 +23,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -45,12 +41,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.yield
+import java.lang.ref.SoftReference
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.jvm.isAccessible
 
 private const val LOG_TAG: String = "nav_issue"
 
 class MainActivity : ComponentActivity() {
+
+    // Save and restore the state manually
+    private var navState: Bundle? = null
 
     companion object Route {
         private const val MainNav: String = "MainNav"
@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             val mainNavController = rememberNavController()
-            var nestedNavController: NavController? by remember { mutableStateOf(null) }
+            var nestedNavController: SoftReference<NavController> = SoftReference(null)
 
             NavHost(
                 navController = mainNavController,
@@ -79,14 +79,27 @@ class MainActivity : ComponentActivity() {
                 route = MainNav
             ) {
                 composable(MainScreen1) {
-                    val navController = rememberNavController()
-                    LaunchedEffect(navController) {
+                    val newNestedController = rememberNavController()
+                    navState?.let {
+                        newNestedController.restoreState(it)
+                        navState = null
+                    }
+                    LaunchedEffect(newNestedController) {
+                        newNestedController.addOnDestinationChangedListener { controller, destination, arguments ->
+                            Log.d(
+                                LOG_TAG,
+                                "NestedNavController ${controller.hashCode()} dest change to ${controller.currentDestination?.route}"
+                            )
+                        }
                         Log.d(
                             LOG_TAG,
-                            "Current nestedNavController ${nestedNavController.hashCode()} at ${nestedNavController?.currentDestination?.route}"
+                            "Current nestedNavController ${nestedNavController.hashCode()} at ${nestedNavController.get()?.currentDestination?.route}"
                         )
-                        Log.d(LOG_TAG, "New nestedNavController ${navController.hashCode()} at ${navController.currentDestination?.route}")
-                        nestedNavController = navController
+                        Log.d(
+                            LOG_TAG,
+                            "New nestedNavController ${newNestedController.hashCode()} at ${newNestedController.currentDestination?.route}"
+                        )
+                        nestedNavController = SoftReference(newNestedController)
                     }
                     Column {
                         Box(
@@ -95,7 +108,7 @@ class MainActivity : ComponentActivity() {
                                 .fillMaxWidth()
                         ) {
                             NavHost(
-                                navController = navController,
+                                navController = newNestedController,
                                 startDestination = NestedScreen1,
                                 route = NestedNav
                             ) {
@@ -128,9 +141,9 @@ class MainActivity : ComponentActivity() {
                             Arrangement.spacedBy(8.dp)
                         ) {
                             NavButton(mainNavController, MainScreen2)
-                            NavButton(navController, NestedScreen1)
-                            NavButton(navController, NestedScreen2)
-                            PrintNavButton(mainNavController, navController)
+                            NavButton(newNestedController, NestedScreen1)
+                            NavButton(newNestedController, NestedScreen2)
+                            PrintNavButton(mainNavController, newNestedController)
                         }
                     }
                 }
@@ -142,11 +155,11 @@ class MainActivity : ComponentActivity() {
                         contentAlignment = Alignment.Center,
                     ) {
                         Column {
-                            NavButton(mainNavController, MainScreen1) {
-                                restoreState = true
-                                popUpTo(MainScreen2) {
-                                    inclusive = true
-                                }
+                            Button(onClick = {
+                                navState = nestedNavController.get()?.saveState()
+                                mainNavController.popBackStack(MainScreen1, false)
+                            }) {
+                                Text("Pop to $MainScreen1")
                             }
                             Button(onClick = {
                                 mainNavController.popBackStack()
@@ -154,12 +167,23 @@ class MainActivity : ComponentActivity() {
                                     while (mainNavController.currentBackStackEntry?.lifecycle?.currentState?.isAtLeast(Lifecycle.State.RESUMED) != true) {
                                         yield()
                                     }
-                                    nestedNavController!!.navigate(NestedScreen2)
+                                    nestedNavController.get()!!.navigate(NestedScreen2)
                                 }
                             }) {
                                 Text("popBackStack + wait resumed + nav to $NestedScreen2")
                             }
-                            PrintNavButton(mainNavController, nestedNavController)
+                            Button(onClick = {
+                                nestedNavController.get()!!.navigate(NestedScreen2)
+                                mainNavController.popBackStack()
+                            }) {
+                                Text("popBackStack + nav to $NestedScreen2")
+                            }
+                            Button(onClick = {
+                                nestedNavController.get()!!.navigate(NestedScreen2)
+                            }) {
+                                Text("nav to $NestedScreen2 only")
+                            }
+                            PrintNavButton(mainNavController, nestedNavController.get())
                         }
                     }
                 }
