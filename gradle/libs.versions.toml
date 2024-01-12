@@ -82,7 +82,7 @@ accompanist-systemuicontroller = { group = "com.google.accompanist", name = "acc
 
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "android-gradle-plugin" }
 
-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose" }
-#compose-bom = { group = "dev.chrisbanes.compose", name = "compose-bom", version.ref = "compose-bom-alpha" }
+#compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose" }
+compose-bom = { group = "dev.chrisbanes.compose", name = "compose-bom", version.ref = "compose-bom-alpha" }
 
 androidx-compose-compiler-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "androidx-compose-compiler" }
