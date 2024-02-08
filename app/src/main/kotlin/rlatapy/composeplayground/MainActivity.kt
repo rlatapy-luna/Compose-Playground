@@ -10,12 +10,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -95,16 +93,22 @@ fun BottomSheetSample(
 ) {
     val scope = rememberCoroutineScope()
     val bottomSheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = false,
+        skipPartiallyExpanded = true,
     )
     var textValue: String by remember { mutableStateOf("") }
 
     ModalBottomSheet(
         onDismissRequest = closeBottomSheet,
+        modifier = Modifier
+            .fillMaxHeight(0.8f),
         sheetState = bottomSheetState,
         windowInsets = WindowInsets(0),
     ) {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+        ) {
             Button(
                 // Note: If you provide logic outside of onDismissRequest to remove the sheet,
                 // you must additionally handle intended state cleanup, if any.
@@ -125,12 +129,6 @@ fun BottomSheetSample(
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
-        )
-        Spacer(
-            Modifier
-                .background(Color.Cyan)
-                .fillMaxWidth()
-                .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Bottom))
         )
     }
 }
