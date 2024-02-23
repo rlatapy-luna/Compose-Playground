@@ -64,6 +64,16 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Text(text = "decrypt")
                     }
+                    Button(
+                        onClick = {
+                            scope.launch {
+                                runCatching { suspendA() }.exceptionOrNull()?.printStackTrace()
+                                suspendA()
+                            }
+                        },
+                    ) {
+                        Text(text = "suspendA")
+                    }
                 }
             }
         }
@@ -117,4 +127,25 @@ private suspend fun <T> withContextCatching(block: suspend CoroutineScope.() -> 
     withContext(Dispatchers.Default, block)
 } catch (e: GeneralSecurityException) {
     throw GeneralSecurityException(e)
+}
+
+suspend fun suspendA(): String {
+    val b = suspendB()
+    return b.getOrNull() ?: throw Exception("suspendA failed", b.exceptionOrNull())
+}
+
+suspend fun suspendB(): Result<String> {
+    return suspendC()
+}
+
+suspend fun suspendC(): Result<String> {
+    return suspendD()
+}
+
+suspend fun suspendD(): Result<String> {
+    return runCatching {
+        withContext(Dispatchers.Default) {
+            throw Exception("from D")
+        }
+    }
 }
