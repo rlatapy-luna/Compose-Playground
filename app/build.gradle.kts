@@ -23,11 +23,11 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "benchmark-proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         getByName("debug") {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "benchmark-proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
@@ -62,6 +62,11 @@ dependencies {
     implementation(libs.material3)
 
     implementation(libs.accompanist.systemuicontroller)
+
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.json.serialization)
+    implementation(libs.ktor.content.negotiation)
+    implementation(libs.ktor.logging)
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
