@@ -8,16 +8,13 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,14 +27,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +55,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             var showBottomSheet by remember {
-                mutableStateOf(true)
+                mutableStateOf(false)
             }
 
             MaterialTheme {
@@ -77,10 +72,8 @@ class MainActivity : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
-                    Button(onClick = {
-                        showBottomSheet = true
-                    }) {
-                        Text("Show bottom sheet")
+                    Button({ showBottomSheet = !showBottomSheet }) {
+                        Text(text = "Toggle bottom sheet")
                     }
                 }
             }
@@ -93,10 +86,10 @@ class MainActivity : ComponentActivity() {
 fun BottomSheetSample(
     closeBottomSheet: () -> Unit,
 ) {
-    val scope = rememberCoroutineScope()
     val bottomSheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = false,
+        skipPartiallyExpanded = true,
     )
+    var textValue2: String by remember { mutableStateOf("") }
     var textValue: String by remember { mutableStateOf("") }
 
     ModalBottomSheet(
@@ -104,33 +97,24 @@ fun BottomSheetSample(
         sheetState = bottomSheetState,
         windowInsets = WindowInsets(0),
     ) {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            Button(
-                // Note: If you provide logic outside of onDismissRequest to remove the sheet,
-                // you must additionally handle intended state cleanup, if any.
-                onClick = {
-                    scope.launch { bottomSheetState.hide() }.invokeOnCompletion {
-                        if (!bottomSheetState.isVisible) {
-                            closeBottomSheet()
-                        }
-                    }
-                }
-            ) {
-                Text("Hide Bottom Sheet")
-            }
-        }
-        TextField(
-            value = textValue,
-            onValueChange = { textValue = it },
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-        )
-        Spacer(
+        Box(
             Modifier
-                .background(Color.Cyan)
-                .fillMaxWidth()
-                .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Bottom))
-        )
+                .fillMaxSize()
+                .background(Color.Red)
+        ) {
+            TextField(
+                value = textValue2, onValueChange = {},
+                Modifier
+                    .align(Alignment.TopCenter)
+                    .systemBarsPadding()
+            )
+            Button({ closeBottomSheet() }, Modifier.align(Alignment.Center)) { Text(text = "close") }
+            TextField(
+                value = textValue, onValueChange = {},
+                Modifier
+                    .align(Alignment.BottomCenter)
+                    .systemBarsPadding()
+            )
+        }
     }
 }
