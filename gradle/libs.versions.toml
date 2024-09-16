@@ -7,36 +7,47 @@
 [plugins]
 
 kotlin-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+realm = { id = "io.realm.kotlin", version.ref = "realm" }
 
 [versions]
 
-kotlin = "2.0.0"
-##  ⬆ = "2.0.20-Beta1"
+kotlin = "2.0.20"
 
-android-gradle-plugin = "8.5.0"
-##                 ⬆ = "8.6.0-alpha01"
-##                 ⬆ = "8.6.0-alpha02"
-##                 ⬆ = "8.6.0-alpha03"
-##                 ⬆ = "8.6.0-alpha04"
-##                 ⬆ = "8.6.0-alpha05"
-##                 ⬆ = "8.6.0-alpha06"
-##                 ⬆ = "8.6.0-alpha07"
+android-gradle-plugin = "8.6.0"
+##                 ⬆ = "8.7.0-alpha01"
+##                 ⬆ = "8.7.0-alpha02"
+##                 ⬆ = "8.7.0-alpha03"
+##                 ⬆ = "8.7.0-alpha04"
+##                 ⬆ = "8.7.0-alpha05"
+##                 ⬆ = "8.7.0-alpha06"
+##                 ⬆ = "8.7.0-alpha07"
+##                 ⬆ = "8.7.0-alpha08"
+##                 ⬆ = "8.7.0-alpha09"
+##                 ⬆ = "8.7.0-beta01"
+##                 ⬆ = "8.7.0-beta02"
+##                 ⬆ = "8.8.0-alpha01"
+##                 ⬆ = "8.8.0-alpha02"
 
-androidx-compose = "2024.06.00"
+androidx-compose = "2024.09.01"
 
 compose-bom-alpha = "2024.01.00-alpha01"
 
 androidx-core = "1.13.1"
 ##         ⬆ = "1.14.0-alpha01"
 ##         ⬆ = "1.15.0-alpha01"
+##         ⬆ = "1.15.0-alpha02"
 
-androidx-lifecycle = "2.7.0"
+androidx-lifecycle = "2.8.5"
+##              ⬆ = "2.9.0-alpha01"
+##              ⬆ = "2.9.0-alpha02"
 
-androidx-activity = "1.9.0"
+androidx-activity = "1.9.2"
+##             ⬆ = "1.10.0-alpha01"
+##             ⬆ = "1.10.0-alpha02"
 
-google-accompanist = "0.34.0"
-##              ⬆ = "0.35.0-alpha"
-##              ⬆ = "0.35.1-alpha"
+google-accompanist = "0.36.0"
+
+realm = "2.2.0"
 
 [libraries]
 
@@ -63,6 +74,8 @@ material3 = { module = "androidx.compose.material3:material3" }
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "google-accompanist" }
 
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "android-gradle-plugin" }
+
+realm-kotlin = { group = "io.realm.kotlin", name = "library-base", version.ref = "realm" }
 
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose" }
 #compose-bom = { group = "dev.chrisbanes.compose", name = "compose-bom", version.ref = "compose-bom-alpha" }
