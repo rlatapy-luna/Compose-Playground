@@ -11,3 +11,7 @@ buildscript {
         classpath(libs.kotlin.gradle.plugin)
     }
 }
+
+plugins {
+    alias(libs.plugins.realm) apply false
+}

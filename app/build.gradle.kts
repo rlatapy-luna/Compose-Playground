@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     alias(libs.plugins.kotlin.compose.compiler)
+    alias(libs.plugins.realm)
 }
 
 android {
@@ -61,6 +62,7 @@ dependencies {
     implementation(libs.material3)
 
     implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.realm.kotlin)
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
