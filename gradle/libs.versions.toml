@@ -35,7 +35,7 @@ android-gradle-plugin = "8.7.3"
 
 androidx-compose = "2024.12.01"
 
-compose-bom-alpha = "2024.01.00-alpha01"
+compose-bom-alpha = "2024.01.00-alpha03"
 
 androidx-core = "1.15.0"
 ##         ⬆ = "1.16.0-alpha01"
