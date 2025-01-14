@@ -61,6 +61,8 @@ google-accompanist = "0.36.0"
 
 realm = "3.0.0"
 
+lbcpresenter = "1.0.0-287-SNAPSHOT"
+
 [libraries]
 
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -92,3 +94,5 @@ realm-kotlin = { group = "io.realm.kotlin", name = "library-base", version.ref =
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose" }
 #compose-bom = { group = "dev.chrisbanes.compose", name = "compose-bom", version.ref = "compose-bom-alpha" }
 compose-bom-alpha = { group = "dev.chrisbanes.compose", name = "compose-bom", version.ref = "compose-bom-alpha" }
+
+lbcpresenter = { group = "studio.lunabee.compose", name = "lbcpresenter", version.ref = "lbcpresenter" }
