@@ -50,7 +50,7 @@ androidx-lifecycle = "2.8.7"
 ##              ⬆ = "2.9.0-alpha07"
 ##              ⬆ = "2.9.0-alpha08"
 
-androidx-activity = "1.9.3"
+androidx-activity = "1.10.0"
 ##             ⬆ = "1.10.0-alpha01"
 ##             ⬆ = "1.10.0-alpha02"
 ##             ⬆ = "1.10.0-alpha03"
