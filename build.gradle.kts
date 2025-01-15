@@ -6,9 +6,4 @@ buildscript {
         mavenCentral()
         maven { url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/") }
     }
-
-    dependencies {
-        classpath(libs.android.gradle.plugin)
-        classpath(libs.kotlin.gradle.plugin)
-    }
 }
