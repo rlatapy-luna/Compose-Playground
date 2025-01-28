@@ -62,6 +62,8 @@ dependencies {
 
     implementation(libs.accompanist.systemuicontroller)
 
+    implementation(projects.lib)
+
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 }

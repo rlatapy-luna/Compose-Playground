@@ -12,3 +12,4 @@ buildscript {
         classpath(libs.kotlin.gradle.plugin)
     }
 }
+
