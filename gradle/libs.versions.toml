@@ -60,6 +60,7 @@ androidx-activity = "1.10.0"
 
 google-accompanist = "0.36.0"
 
+play-services-nearby = "18.5.0"
 realm = "3.0.0"
 
 lbcpresenter = "1.1.0"
@@ -68,6 +69,7 @@ lbcpresenter = "1.1.0"
 
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
+play-services-nearby = { module = "com.google.android.gms:play-services-nearby", version.ref = "play-services-nearby" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }

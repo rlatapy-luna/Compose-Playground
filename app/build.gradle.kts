@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "rlatapy.composeplayground"
-        minSdk = 30
+        minSdk = 31
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -50,6 +50,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.play.services.nearby)
+
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.runtime.compose)
