@@ -50,7 +50,9 @@ android {
 }
 
 dependencies {
-    implementation(libs.play.services.nearby)
+    implementation(libs.stream.webrtc.android)
+    implementation(libs.okhttp)
+
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
