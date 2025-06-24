@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "rlatapy.composeplayground"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "rlatapy.composeplayground"
         minSdk = 30
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -32,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = JavaVersion.VERSION_21.toString()
     }
 
     buildFeatures {
@@ -66,4 +66,7 @@ dependencies {
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+    testImplementation(libs.kotlinTest)
+    testImplementation(libs.kotlinCoroutineTest)
 }
