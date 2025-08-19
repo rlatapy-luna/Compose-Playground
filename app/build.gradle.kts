@@ -63,6 +63,9 @@ dependencies {
     implementation(libs.accompanist.systemuicontroller)
 
     implementation(projects.lib)
+    implementation(libs.cameraxCompose)
+    implementation(libs.cameraxLifecycle)
+    implementation(libs.cameraxCamera)
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)

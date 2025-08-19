@@ -64,6 +64,7 @@ google-accompanist = "0.36.0"
 realm = "3.0.0"
 
 lbcpresenter = "1.6.0"
+camerax = "1.5.0-rc01"
 
 [libraries]
 
@@ -102,3 +103,8 @@ lbcpresenter = { group = "studio.lunabee.compose", name = "lbcpresenter", versio
 kotlinTest = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 kotlinCoroutineTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinCoroutine" }
 kotlinCoroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines", version.ref = "kotlinCoroutine" }
+cameraxCamera = { group = "androidx.camera", name = "camera-camera2", version.ref = "camerax" }
+cameraxCompose = { module = "androidx.camera:camera-compose", version.ref = "camerax" }
+cameraxExtensions = { group = "androidx.camera", name = "camera-extensions", version.ref = "camerax" }
+cameraxLifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camerax" }
+cameraxView = { group = "androidx.camera", name = "camera-view", version.ref = "camerax" }
