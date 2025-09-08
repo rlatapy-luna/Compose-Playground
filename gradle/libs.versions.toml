@@ -9,6 +9,7 @@
 kotlin-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 realm = { id = "io.realm.kotlin", version.ref = "realm" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+detekt = { id = "dev.detekt", version.ref = "detekt" }
 
 [versions]
 
@@ -65,6 +66,8 @@ realm = "3.0.0"
 
 lbcpresenter = "1.6.2"
 
+detekt = "2.0.0-alpha.0"
+
 [libraries]
 
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -102,3 +105,4 @@ lbcpresenter = { group = "studio.lunabee.compose", name = "lbcpresenter", versio
 kotlinTest = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 kotlinCoroutineTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinCoroutine" }
 kotlinCoroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines", version.ref = "kotlinCoroutine" }
+detekt-rules-ktlint-wrapper = { group = "dev.detekt", name = "detekt-rules-ktlint-wrapper", version.ref = "detekt" }
