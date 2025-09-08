@@ -3,7 +3,6 @@ package rlatapy.composeplayground
 import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
-import androidx.camera.compose.CameraXViewfinder
 import androidx.camera.core.CameraSelector.DEFAULT_BACK_CAMERA
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -14,12 +13,10 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.lifecycle.awaitInstance
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asExecutor
 import kotlinx.coroutines.awaitCancellation
@@ -27,7 +24,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class CameraStreamRenderer() {
@@ -60,7 +56,7 @@ class CameraStreamRenderer() {
 
     @Composable
     fun Composable(modifier: Modifier) {
-        val surfaceRequest by surfaceRequest.collectAsStateWithLifecycle()
+        //        val surfaceRequest by surfaceRequest.collectAsStateWithLifecycle()
         val lifecycleOwner = LocalLifecycleOwner.current
         val context = LocalContext.current
 
@@ -68,12 +64,12 @@ class CameraStreamRenderer() {
             bindToCamera(context, lifecycleOwner)
         }
 
-        surfaceRequest?.let { request ->
-            CameraXViewfinder(
-                surfaceRequest = request,
-                modifier = modifier,
-            )
-        }
+        //        surfaceRequest?.let { request ->
+        //            CameraXViewfinder(
+        //                surfaceRequest = request,
+        //                modifier = modifier,
+        //            )
+        //        }
     }
 
     suspend fun capture(): Bitmap {
