@@ -23,3 +23,4 @@ dependencyResolutionManagement {
 rootProject.name = "ComposePlayground"
 include(":app")
 include(":lib")
+include(":lib-two")
