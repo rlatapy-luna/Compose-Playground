@@ -42,7 +42,7 @@ compose-bom-alpha = "2024.01.00-alpha03"
 androidx-core = "1.17.0"
 ##         ⬆ = "1.16.0-alpha01"
 
-androidx-lifecycle = "2.9.4"
+androidx-lifecycle = "2.10.0"
 ##              ⬆ = "2.9.0-alpha01"
 ##              ⬆ = "2.9.0-alpha02"
 ##              ⬆ = "2.9.0-alpha03"
