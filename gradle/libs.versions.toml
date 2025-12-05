@@ -63,7 +63,7 @@ google-accompanist = "0.36.0"
 
 realm = "3.0.0"
 
-lbcpresenter = "1.8.0"
+lbcpresenter = "1.9.0"
 
 [libraries]
 
