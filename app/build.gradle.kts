@@ -1,6 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     alias(libs.plugins.kotlin.compose.compiler)
 }
 
@@ -35,9 +36,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_21.toString()
-    }
 
     buildFeatures {
         compose = true
@@ -49,13 +47,21 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_21)
+    }
+}
+
 dependencies {
+    implementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
+
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.activity.compose)
 
-    api(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
@@ -69,4 +75,7 @@ dependencies {
 
     testImplementation(libs.kotlinTest)
     testImplementation(libs.kotlinCoroutineTest)
+
+    androidTestImplementation(libs.kotlinTest)
+    androidTestImplementation(libs.androidxComposeUiTestJunit)
 }
