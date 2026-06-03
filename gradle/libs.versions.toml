@@ -21,7 +21,7 @@ androidx-compose = "2026.05.01"
 
 compose-bom-alpha = "2024.01.00-alpha03"
 
-androidx-core = "1.18.0"
+androidx-core = "1.19.0"
 
 androidx-lifecycle = "2.10.0"
 
