@@ -17,7 +17,7 @@ kotlinCoroutine = "1.11.0"
 
 android-gradle-plugin = "9.3.1"
 
-androidx-compose = "2026.06.01"
+androidx-compose = "2026.08.00"
 
 compose-bom-alpha = "2024.01.00-alpha03"
 
